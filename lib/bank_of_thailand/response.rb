@@ -59,7 +59,7 @@ module BankOfThailand
     # @param column [String] the column name
     # @return [Array<Float>] array of numeric values
     def values_for(column)
-      data.map { |row| row[column]&.to_f }.compact
+      data.select { |row| row.is_a?(Hash) }.map { |row| row[column]&.to_f }.compact
     end
 
     # Minimum value for a column
