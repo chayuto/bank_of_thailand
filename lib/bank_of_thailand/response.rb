@@ -150,7 +150,7 @@ module BankOfThailand
 
       {
         absolute: last_val - first_val,
-        percentage: ((last_val - first_val) / first_val * 100).round(4),
+        percentage: first_val.zero? ? 0.0 : ((last_val - first_val) / first_val * 100).round(4),
         first_value: first_val,
         last_value: last_val
       }
