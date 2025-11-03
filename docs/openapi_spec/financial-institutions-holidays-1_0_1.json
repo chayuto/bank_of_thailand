@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Financial Institutions’ Holidays",
+    "version": "1.0.1",
+    "x-ibm-name": "financial-institutions-holidays"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/financial-institutions-holidays"
+    }
+  ],
+  "security": [
+    {
+      "X-IBM-Client-Id": []
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Year in format YYYY (eg. 2018)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response Parameters": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "HolidayWeekDay": {
+              "type": "string",
+              "description": "ชื่อวันของสัปดาห์",
+              "example": "Monday"
+            },
+            "HolidayWeekDayThai": {
+              "type": "string",
+              "description": "ชื่อวันของสัปดาห์(ภาษาไทย)",
+              "example": "วันจันทร์"
+            },
+            "Date": {
+              "type": "string",
+              "description": "วันที่",
+              "example": "2018-01-01"
+            },
+            "DateThai": {
+              "type": "string",
+              "description": "วันที่ภาษาไทย (รูปแบบ วว/ดด/ปป)",
+              "example": "01/01/2561"
+            },
+            "HolidayDescription": {
+              "type": "string",
+              "description": "คำอธิบายภาษาอังกฤษ",
+              "example": "New Year’s Day"
+            },
+            "HolidayDescriptionThai": {
+              "type": "string",
+              "description": "คำอธิบายภาษาไทย",
+              "example": "วันขึ้นปีใหม่"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "X-IBM-Client-Id": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

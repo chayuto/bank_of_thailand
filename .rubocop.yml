@@ -1,0 +1,98 @@
+AllCops:
+  TargetRubyVersion: 3.0
+  SuggestExtensions: false
+  NewCops: enable
+
+require:
+  - rubocop-rspec
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "*.gemspec"
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 32
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - "*.gemspec"
+
+# RSpec cops
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/SubjectStub:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/IdenticalEqualityAssertion:
+  Enabled: false
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
+# Capybara cops (disabled due to bugs)
+Capybara/RSpec/PredicateMatcher:
+  Enabled: false
+
+# Gemspec cops
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+# Naming cops
+Naming/PredicateMethod:
+  Exclude:
+    - "lib/bank_of_thailand/configuration.rb"
+
+Naming/BlockForwarding:
+  Enabled: false
+
+# Style cops
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/ArgumentsForwarding:
+  Enabled: false

@@ -1,0 +1,778 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Average Exchange Rate - THB / Foreign Currency",
+    "version": "2.0.2",
+    "x-ibm-name": "average-exchange-rate-thb--foreign-currency"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/Stat-ExchangeRate/v2"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/DAILY_AVG_EXG_RATE/": {
+      "get": {
+        "description": "Daily Average Exchange Rate - THB / Foreign Currency <br> <br> Data collected include exchange rates quoted for immediate delivery (i.e., in the spot market) between Thai Baht vis-à-vis 19 other currencies. <br> Exchange rate data are obtained from daily foreign exchange transaction reports from commercial banks in Thailand. <br> Frequency : Daily <br> Lag time : -- <br> Release schedule : Every business day at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Foreign Currency",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Daily%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/MONTHLY_AVG_EXG_RATE/": {
+      "get": {
+        "description": "Monthly Average Exchange Rate - THB / Foreign Currency <br> <br> Data collected include exchange rates quoted for immediate delivery (i.e., in the spot market) between Thai Baht vis-à-vis 19 other currencies. <br> Exchange rate data are obtained from daily foreign exchange transaction reports from commercial banks in Thailand. <br> Frequency : Monthly <br> Lag time : -- <br> Release schedule : End of business day of Month at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM) EX. 2017-06",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Period Date (YYYY-MM) EX. 2017-06",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Foreign Currency",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Monthly%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/QUARTERLY_AVG_EXG_RATE/": {
+      "get": {
+        "description": "Quarterly Average Exchange Rate - THB / Foreign Currency <br> <br> Data collected include exchange rates quoted for immediate delivery (i.e., in the spot market) between Thai Baht vis-à-vis 19 other currencies. <br> Exchange rate data are calculated from monthly foreign exchange transaction reports from commercial banks in Thailand. <br> Frequency : Quarterly <br> Lag time : -- <br> Release schedule : End of business day of Quarter at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-QN) EX. 2017-Q1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-QN) EX. 2017-Q1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Foreign Currency",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quarterly%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ANNUAL_AVG_EXG_RATE/": {
+      "get": {
+        "description": "Annual Average Exchange Rate - THB / Foreign Currency <br> <br> Data collected include exchange rates quoted for immediate delivery (i.e., in the spot market) between Thai Baht vis-à-vis 19 other currencies. <br> Exchange rate data are calculated from quarterly foreign exchange transaction reports from commercial banks in Thailand. <br> Frequency : Annual <br> Lag time : -- <br> Release schedule : End of business day of Annual at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY) EX. 2017",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY) EX. 2017",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "Foreign Currency",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Annual%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Daily Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Daily Weighted-average Interbank Exchange Rate - THB / USD"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-21 19:50:04"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "report_remark_eng": {
+                              "type": "string",
+                              "example": "Since Nov 16, 2015 the data regarding Buying Transfer Rate of PKR has been changed to Buying Rate using Foreign Exchange Rates (THOMSON REUTERS) with Bangkok Market Crossing."
+                            },
+                            "report_remark_th": {
+                              "type": "string",
+                              "example": "ตั้งแต่วันที่ 16 พ.ย. 2558 ข้อมูลในอัตราซื้อเงินโอนของสกุล PKR ได้เปลี่ยนเป็นอัตราซื้อที่ใช้อัตราในตลาดต่างประเทศ (ทอมสันรอยเตอร์) คำนวณผ่านอัตราซื้อขายเงินดอลลาร์ สรอ. ในตลาดกรุงเทพฯ"
+                            }
+                          }
+                        }
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-21"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "currency_id": {
+                        "type": "string"
+                      },
+                      "currency_name_th": {
+                        "type": "string"
+                      },
+                      "currency_name_eng": {
+                        "type": "string"
+                      },
+                      "buying_sight": {
+                        "type": "string"
+                      },
+                      "buying_transfer": {
+                        "type": "string"
+                      },
+                      "selling": {
+                        "type": "string"
+                      },
+                      "mid_rate": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2002-01-15",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "43.7425000",
+                        "buying_transfer": "43.8400000",
+                        "selling": "44.0346000",
+                        "mid_rate": "43.8886000"
+                      },
+                      {
+                        "period": "2002-01-14",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "43.7344000",
+                        "buying_transfer": "43.8318000",
+                        "selling": "44.0313000",
+                        "mid_rate": "43.8829000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Monthly Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Monthly Average Exchange Rate - THB / Foreign Currency"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-21 20:08:52"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "report_remark_eng": {
+                              "type": "string",
+                              "example": "Since Nov 16, 2015 the data regarding Buying Transfer Rate of PKR has been changed to Buying Rate using Foreign Exchange Rates (THOMSON REUTERS) with Bangkok Market Crossing."
+                            },
+                            "report_remark_th": {
+                              "type": "string",
+                              "example": "ตั้งแต่วันที่ 16 พ.ย. 2558 ข้อมูลในอัตราซื้อเงินโอนของสกุล PKR ได้เปลี่ยนเป็นอัตราซื้อที่ใช้อัตราในตลาดต่างประเทศ (ทอมสันรอยเตอร์) คำนวณผ่านอัตราซื้อขายเงินดอลลาร์ สรอ. ในตลาดกรุงเทพฯ"
+                            }
+                          }
+                        }
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-21"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "currency_id": {
+                        "type": "string"
+                      },
+                      "currency_name_th": {
+                        "type": "string"
+                      },
+                      "currency_name_eng": {
+                        "type": "string"
+                      },
+                      "buying_sight": {
+                        "type": "string"
+                      },
+                      "buying_transfer": {
+                        "type": "string"
+                      },
+                      "selling": {
+                        "type": "string"
+                      },
+                      "mid_rate": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2002-02",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "43.6288000",
+                        "buying_transfer": "43.7256000",
+                        "selling": "43.9254000",
+                        "mid_rate": "43.7771000"
+                      },
+                      {
+                        "period": "2002-01",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "43.8354000",
+                        "buying_transfer": "43.9321000",
+                        "selling": "44.1279000",
+                        "mid_rate": "43.9817000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Quarterly Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Quarterly Average Exchange Rate - THB / Foreign Currency"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-21 20:11:51"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "report_remark_eng": {
+                              "type": "string",
+                              "example": "Since Nov 16, 2015 the data regarding Buying Transfer Rate of PKR has been changed to Buying Rate using Foreign Exchange Rates (THOMSON REUTERS) with Bangkok Market Crossing."
+                            },
+                            "report_remark_th": {
+                              "type": "string",
+                              "example": "ตั้งแต่วันที่ 16 พ.ย. 2558 ข้อมูลในอัตราซื้อเงินโอนของสกุล PKR ได้เปลี่ยนเป็นอัตราซื้อที่ใช้อัตราในตลาดต่างประเทศ (ทอมสันรอยเตอร์) คำนวณผ่านอัตราซื้อขายเงินดอลลาร์ สรอ. ในตลาดกรุงเทพฯ"
+                            }
+                          }
+                        }
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-21"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "currency_id": {
+                        "type": "string"
+                      },
+                      "currency_name_th": {
+                        "type": "string"
+                      },
+                      "currency_name_eng": {
+                        "type": "string"
+                      },
+                      "buying_sight": {
+                        "type": "string"
+                      },
+                      "buying_transfer": {
+                        "type": "string"
+                      },
+                      "selling": {
+                        "type": "string"
+                      },
+                      "mid_rate": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2016-Q4",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "35.1351000",
+                        "buying_transfer": "35.2159000",
+                        "selling": "35.5684000",
+                        "mid_rate": "35.3922000"
+                      },
+                      {
+                        "period": "2016-Q3",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "34.5818000",
+                        "buying_transfer": "34.6752000",
+                        "selling": "35.0135000",
+                        "mid_rate": "34.8444000"
+                      },
+                      {
+                        "period": "2016-Q2",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "35.0214000",
+                        "buying_transfer": "35.1141000",
+                        "selling": "35.4489000",
+                        "mid_rate": "35.2815000"
+                      },
+                      {
+                        "period": "2016-Q1",
+                        "currency_id": "USD",
+                        "currency_name_th": "สหรัฐอเมริกา : ดอลลาร์ (USD)",
+                        "currency_name_eng": "USA : DOLLAR (USD) ",
+                        "buying_sight": "35.4110000",
+                        "buying_transfer": "35.5020000",
+                        "selling": "35.8329000",
+                        "mid_rate": "35.6675000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Annual Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Annual Average Exchange Rate - THB / Foreign Currency"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-21 20:13:40"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "report_remark_eng": {
+                              "type": "string",
+                              "example": "Since Nov 16, 2015 the data regarding Buying Transfer Rate of PKR has been changed to Buying Rate using Foreign Exchange Rates (THOMSON REUTERS) with Bangkok Market Crossing."
+                            },
+                            "report_remark_th": {
+                              "type": "string",
+                              "example": "ตั้งแต่วันที่ 16 พ.ย. 2558 ข้อมูลในอัตราซื้อเงินโอนของสกุล PKR ได้เปลี่ยนเป็นอัตราซื้อที่ใช้อัตราในตลาดต่างประเทศ (ทอมสันรอยเตอร์) คำนวณผ่านอัตราซื้อขายเงินดอลลาร์ สรอ. ในตลาดกรุงเทพฯ"
+                            }
+                          }
+                        }
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-21"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "period": {
+                          "type": "string",
+                          "example": "2016"
+                        },
+                        "currency_id": {
+                          "type": "string",
+                          "example": "USD"
+                        },
+                        "currency_name_th": {
+                          "type": "string",
+                          "example": "สหรัฐอเมริกา : ดอลลาร์ (USD)"
+                        },
+                        "currency_name_eng": {
+                          "type": "string",
+                          "example": "USA : DOLLAR (USD) "
+                        },
+                        "buying_sight": {
+                          "type": "string",
+                          "example": "35.0373000"
+                        },
+                        "buying_transfer": {
+                          "type": "string",
+                          "example": "35.1268000"
+                        },
+                        "selling": {
+                          "type": "string",
+                          "example": "35.4659000"
+                        },
+                        "mid_rate": {
+                          "type": "string",
+                          "example": "35.2964000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "parameters": {
+      "start_period": {
+        "name": "start_period",
+        "in": "query",
+        "description": "Start Period Date",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "end_period": {
+        "name": "end_period",
+        "in": "query",
+        "description": "End Preiod Date",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "currency": {
+        "name": "currency",
+        "in": "query",
+        "description": "Foreign Currency",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

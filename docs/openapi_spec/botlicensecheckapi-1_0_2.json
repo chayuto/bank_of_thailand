@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "BOTLicenseCheckAPI",
+    "description": "API สำหรับการเรียกดูข้อมูลใบอนุญาตหรือใบขึ้นทะเบียนให้ประกอบธุรกิจที่อยู่ภายใต้การกำกับของธนาคารแห่งประเทศไทย เช่น P-Loan, Nano Finance, e-Money",
+    "version": "1.0.2",
+    "x-ibm-name": "botlicensecheckapi"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/BotLicenseCheckAPI/"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/SearchAuthorized": {
+      "get": {
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "คำค้นหา",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "ตำแหน่งของหน้า",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "จำนวนของผลลัพธ์",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/License": {
+      "get": {
+        "parameters": [
+          {
+            "name": "authId",
+            "in": "query",
+            "description": "Id ในระบบของผู้ที่ได้รับอนุญาต",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "docId",
+            "in": "query",
+            "description": "เลขที่อ้างอิงเอกสาร",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/AuthorizedDetail": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id ในระบบของผู้ที่ได้รับอนุญาต",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

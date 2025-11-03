@@ -1,0 +1,201 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Debt Securities Auction Result (Current)",
+    "description": "Provide the result of Debt securities auction. <br>\nFrequency : Following to the auction schedule <br>\nLag time : -- <br>\nRelease schedule : when the auction is approved <br>\nSource of data : Bank of Thailand <br>\nMore detail [CLICK](https://www.bot.or.th/en/our-services/bond-and-debt-securities-services/DebtSecurities-Auction-Schedule-and-Result.html) <br>\n<u>Remark</u> BOT has provided more information, such as Classification of Financial Instrument code (cfi_code) and Auction Status (auction_st), on API responses starting September 29, 2017 onward.",
+    "version": "2.0.0",
+    "x-ibm-name": "debt-securities-auction-result-current"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/BondAuction/bond_auction_v2/"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-31",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Period Date (YYYY-MM-DD) EX. 2017-06-31",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Bond Auction"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-10-03 08:53:51"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "auction_date": {
+                          "type": "string",
+                          "example": "2017-09-26"
+                        },
+                        "debt_securities_type": {
+                          "type": "string",
+                          "example": "Government Bonds"
+                        },
+                        "thaibma_symbol": {
+                          "type": "string",
+                          "example": "LB233A"
+                        },
+                        "isin_code": {
+                          "type": "string",
+                          "example": "TH0623033303"
+                        },
+                        "auction_nm_th": {
+                          "type": "string",
+                          "example": "พันธบัตรรัฐบาลในปีงบประมาณ พ.ศ.2560 ครั้งที่ 1-Test API"
+                        },
+                        "cfi_code": {
+                          "type": "string",
+                          "example": "DBFTFR"
+                        },
+                        "re_open_from_th": {
+                          "type": "string",
+                          "example": "พันธบัตรรัฐบาลในปีงบประมาณ พ.ศ.2551 ครั้งที่ 4"
+                        },
+                        "coupon_rate": {
+                          "type": "string",
+                          "example": "5.5"
+                        },
+                        "time_to_maturity": {
+                          "type": "string",
+                          "example": "5.46 Yrs"
+                        },
+                        "payment_date": {
+                          "type": "string",
+                          "example": "2017-09-28"
+                        },
+                        "start_date_of_interest_earning_period": {
+                          "type": "string",
+                          "example": "2017-09-13"
+                        },
+                        "maturity_date": {
+                          "type": "string",
+                          "example": "2023-03-13"
+                        },
+                        "issue_amount_ncb_cb": {
+                          "type": "string",
+                          "example": "2000.0000000"
+                        },
+                        "accepted_amount_ncb_cb": {
+                          "type": "string",
+                          "example": "2000.0000000"
+                        },
+                        "accepted_amount_ncb": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "accepted_amount_cb": {
+                          "type": "string",
+                          "example": "2000.0000000"
+                        },
+                        "greenshoe_option_amount": {
+                          "type": "string",
+                          "example": "400.0000000"
+                        },
+                        "pao_amount": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "over_allotment_amount": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "grand_total_amount": {
+                          "type": "string",
+                          "example": "2400.0000000"
+                        },
+                        "accepted_lowest_yield": {
+                          "type": "string",
+                          "example": "1.7070000"
+                        },
+                        "accepted_highest_yield": {
+                          "type": "string",
+                          "example": "1.7090000"
+                        },
+                        "weighted_average_accepted_yield": {
+                          "type": "string",
+                          "example": "1.7077000"
+                        },
+                        "bid_coverage_ratio": {
+                          "type": "string",
+                          "example": "2.2000000"
+                        },
+                        "auction_st": {
+                          "type": "string",
+                          "example": "Approve"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

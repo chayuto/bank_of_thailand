@@ -1,0 +1,182 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Thai Baht Implied Interest Rates (Percent per annum)",
+    "description": "Thai baht Implied Interest Rates refer to interest rate quoted for Baht borrowing through swap market from which the Bank of Thailand disseminates. The rates are those pertaining to domestic market where all transactions are either interbank or between commercial banks and their clients, and interest rates pertaining to foreign markets, which reflect transactions between commercial\nbanks and Non-resident clients. <br>\nFrequency : Daily <br>\nLag time : 1 business; day <br>\nRelease schedule : Every business day at 11.00 a.m. <br>\nSource of data : Bank of Thailand <br>\nMore detail  [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_RT_003_ENG.PDF)",
+    "version": "2.0.0",
+    "x-ibm-name": "thai-baht-implied-interest-rates-percent-per-annum"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/Stat-ThaiBahtImpliedInterestRate/v2/THB_IMPL_INT_RATE"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rate_type",
+            "in": "query",
+            "description": "RateType EX. ONSHORE : T/N",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Thai Baht Implied Interest Rates (Percent per annum)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-24 16:34:00"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Thai Baht Implied Interest Rates"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "Thai Baht Implied Interest Rates"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Percent per annum)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(อัตราร้อยละต่อปี)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "report_remark_eng": {
+                              "type": "string",
+                              "example": "Calculated from THB premium in various tenors from outside source (Reuters) at market closing."
+                            },
+                            "report_remark_th": {
+                              "type": "string",
+                              "example": "คำนวณ Thai Baht Implied Interest Rates จาก Swap Point ตามระยะเวลาต่าง ๆ ของราคาปิดในแต่ละตลาด จากแหล่งข้อมูล Reuters"
+                            }
+                          }
+                        }
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-24"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "period": {
+                          "type": "string",
+                          "example": "2017-05-03"
+                        },
+                        "rate_type_name_th": {
+                          "type": "string",
+                          "example": "ONSHORE : T/N"
+                        },
+                        "rate_type_name_eng": {
+                          "type": "string",
+                          "example": "ONSHORE : T/N"
+                        },
+                        "interest_rate": {
+                          "type": "string",
+                          "example": "1.35000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

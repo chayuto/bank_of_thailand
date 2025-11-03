@@ -1,0 +1,177 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Search Stat APIs",
+    "description": "ผู้ใช้บริการสามารถค้นหาข้อมูล BOT API ในกลุ่มสถิติ โดยกำหนดคำค้น keyword ตัวอย่างเช่น series code, series name หรือคำที่ต้องการ โดยบริการค้นหา Search Stat APIs จะแสดงผลการค้นหาแต่ละครั้งไม่เกิน 100 series\n\nUser can look for data in BOT API Statistics by keyword search using series code, series name, or relevant terms. The result will be displayed up to 100 series per search.",
+    "version": "1.0.0",
+    "x-ibm-name": "search-series"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/search-series"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "keyword for search series",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response Parameters"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Search Stat APIs"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2018-07-23 17:34:14"
+              },
+              "series_details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "series_code": {
+                      "type": "string",
+                      "example": "PF00000000Q00232"
+                    },
+                    "observation_start": {
+                      "type": "string",
+                      "example": "2003-Q4้"
+                    },
+                    "observation_end": {
+                      "type": "string",
+                      "example": "2018-Q1"
+                    },
+                    "series_name_th": {
+                      "type": "string",
+                      "example": "ยอดรวมตราสารหนี้"
+                    },
+                    "series_name_eng": {
+                      "type": "string",
+                      "example": "Government debt securities_Total"
+                    },
+                    "series_categories": {
+                      "type": "object",
+                      "properties": {},
+                      "example": []
+                    },
+                    "frequency": {
+                      "type": "string",
+                      "example": "Quarterly"
+                    },
+                    "frequency_short": {
+                      "type": "string",
+                      "example": "Q"
+                    },
+                    "unit_th": {
+                      "type": "string",
+                      "example": "ล้านบาท"
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "example": "Stock"
+                    },
+                    "seasonal_adjustment_flag": {
+                      "type": "string",
+                      "example": "N"
+                    },
+                    "last_updated_date": {
+                      "type": "string",
+                      "example": "2018-04-30"
+                    },
+                    "source_of_data_th": {
+                      "type": "string",
+                      "example": "1. ธนาคารแห่งประเทศไทย 2. สำนักบริหารหนี้สาธารณะ กระทรวงการคลัง 3. บริษัทศูนย์รับฝากหลักทรัพย์ (ประเทศไทย) จำกัด  4. ผู้ดูแลและเก็บรักษาหลักทรัพย์"
+                    },
+                    "source_of_data_eng": {
+                      "type": "string",
+                      "example": "1. Bank of Thailand  2. The Public Debt Management Office, Ministry of Finance 3. Thailand Securities Depository Co., Ltd. (TSD) 4. Custodians"
+                    },
+                    "lag_time": {
+                      "type": "string",
+                      "example": "1 Month"
+                    },
+                    "release_schedule_th": {
+                      "type": "string",
+                      "example": "วันทำการสุดท้ายของเดือนถัดไป"
+                    },
+                    "release_schedule_eng": {
+                      "type": "string",
+                      "example": "The last business day of the following month"
+                    },
+                    "annotation_th": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "annotation_eng": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "description_th": {
+                      "type": "string",
+                      "example": "ยอดรวมตราสารหนี้"
+                    },
+                    "description_eng": {
+                      "type": "string",
+                      "example": "Total of the outstanding Government debt securities"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

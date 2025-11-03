@@ -1,0 +1,196 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Swap point - Onshore (in Satangs)",
+    "description": "Swap Point Onshore (in Satangs) refers to the difference between the spot and forward exchange rates available at the period of 1, 3 and 6 months. <br>\nLag time : -- <br>\nRelease schedule : End of every business day at 6.00 p.m. <br> \nSource of data : <br>\n1. Bank of Thailand\n2. Reuters <br>\nMore detail  [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_RT_006_ENG.PDF)",
+    "version": "2.0.0",
+    "x-ibm-name": "swap-point-onshore-in-satangs"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/Stat-SwapPoint/v2/SWAPPOINT"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "term_type",
+            "in": "query",
+            "description": "Term type",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Swap point - Onshore (in Satangs)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-24 16:36:12"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Spot Rate and Swap Point"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "Spot Rate and Swap Point"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "report_source_of_data": {
+                        "type": "object",
+                        "properties": {
+                          "source_of_data_eng": {
+                            "type": "string"
+                          },
+                          "source_of_data_th": {
+                            "type": "string"
+                          }
+                        },
+                        "example": [
+                          {
+                            "source_of_data_eng": "Reuters",
+                            "source_of_data_th": "รอยเตอร์"
+                          },
+                          {
+                            "source_of_data_eng": "Bank of Thailand",
+                            "source_of_data_th": "ธนาคารแห่งประเทศไทย"
+                          }
+                        ]
+                      },
+                      "report_remark": {
+                        "type": "object",
+                        "properties": {
+                          "report_remark_eng": {
+                            "type": "string"
+                          },
+                          "report_remark_th": {
+                            "type": "string"
+                          }
+                        },
+                        "example": [
+                          {
+                            "report_remark_eng": "Forward exchange rate can be derived from the addition of spot rate and swap point.",
+                            "report_remark_th": "อัตราแลกเปลี่ยนล่วงหน้าคำนวณได้จากอัตราแลกเปลี่ยนทันที และ SWAP POINT"
+                          },
+                          {
+                            "report_remark_eng": "1 Satang = 0.01 Baht.",
+                            "report_remark_th": "1 สตางค์ = 0.01 บาท   "
+                          }
+                        ]
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-21"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "period": {
+                          "type": "string",
+                          "example": "2017-05-03"
+                        },
+                        "term_type_name_th": {
+                          "type": "string",
+                          "example": "1 Month"
+                        },
+                        "term_type_name_eng": {
+                          "type": "string",
+                          "example": "1 Month"
+                        },
+                        "bid_rate": {
+                          "type": "string",
+                          "example": "0.6500000"
+                        },
+                        "offer_rate": {
+                          "type": "string",
+                          "example": "0.8000000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

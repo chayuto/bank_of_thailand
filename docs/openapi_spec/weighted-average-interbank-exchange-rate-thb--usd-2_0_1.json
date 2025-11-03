@@ -1,0 +1,546 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Weighted-average Interbank Exchange Rate - THB / USD",
+    "version": "2.0.1",
+    "x-ibm-name": "weighted-average-interbank-exchange-rate-thb--usd"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/Stat-ReferenceRate/v2"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/DAILY_REF_RATE/": {
+      "get": {
+        "description": "Daily Weighted-average Interbank Exchange Rate - THB / USD <br> <br> Data is calculated from Daily Intebank Purchases and Sales of US Dollar (against THB) of the transaction worth more than or equal to 1 million USD. The Exchange Rates are calculated using weighted-average between the trading volume and the exchange rate specified. <br> Frequency : Daily <br> Lag time : -- <br> Release schedule : Every business day at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Daily%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/MONTHLY_REF_RATE/": {
+      "get": {
+        "description": "Monthly Weighted-average Interbank Exchange Rate - THB / USD <br> <br> Data is averaged from Daily Weighted-average Interbank Exchange Rate, calculated from Daily Interbank Purchases and Sales of US Dollar (against THB) of the transaction worth more than or equal to 1 million USD. The Exchange Rates are calculated using weighted-average between the trading volume and the exchange rate specified. <br> Frequency : Monthly <br> Lag time : -- <br> Release schedule : End of business day of Month at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM) EX. 2017-06",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Period Date (YYYY-MM) EX. 2017-06",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Monthly%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/QUARTERLY_REF_RATE/": {
+      "get": {
+        "description": "Quarterly Weighted-average Interbank Exchange Rate - THB / USD <br> <br> Data is averaged from Monthly Weighted-average Interbank Exchange Rate, calculated from Daily Interbank Purchases and Sales of US Dollar (against THB) of the transaction worth more than or equal to 1 million USD. The Exchange Rates are calculated using weighted-average between the trading volume and the exchange rate specified. <br> Frequency : Quarterly <br> Lag time : -- <br> Release schedule : End of business day of Quarter at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data :  <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-QN) EX. 2017-Q1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-QN) EX. 2017-Q1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quarterly%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ANNUAL_REF_RATE/": {
+      "get": {
+        "description": "Annual Weighted-average Interbank Exchange Rate - THB / USD <br> <br> Data is averaged from Quarterly Weighted-average Interbank Exchange Rate, calculated from Daily Interbank Purchases and Sales of US Dollar (against THB) of the transaction worth more than or equal to 1 million USD. The Exchange Rates are calculated using weighted-average between the trading volume and the exchange rate specified. <br> Frequency : Annual <br> Lag time : -- <br> Release schedule : End of business day of Annual at 6.00 p.m. (BKK-GMT+07:00) <br> Source of data : <br> 1. Commercial Banks registered in Thailand <br> 2. Foreign Bank Branches <br> 3. Special-purpose Financial Institutions <br> More detail [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_FX_001_S3_ENG.PDF)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY) EX. 2017",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY) EX. 2017",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Annual%20Response%20Parameter"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Daily Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Daily Weighted-average Interbank Exchange Rate - THB / USD"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-07 17:14:28"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "example": ""
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-06-13"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "rate": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2002-01-15",
+                        "rate": "43.9200000"
+                      },
+                      {
+                        "period": "2002-01-14",
+                        "rate": "43.9230000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Monthly Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Monthly Weighted-average Interbank Exchange Rate - THB / USD"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-07 17:26:37"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "example": ""
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-06-13"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "period": {
+                          "type": "string",
+                          "example": "2002-01"
+                        },
+                        "rate": {
+                          "type": "string",
+                          "example": "44.0215000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Quarterly Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Quarterly Weighted-average Interbank Exchange Rate - THB / USD"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-07 17:27:16"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "example": ""
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-06-13"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "period": {
+                          "type": "string",
+                          "example": "2002-Q1"
+                        },
+                        "rate": {
+                          "type": "string",
+                          "example": "43.7432000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Annual Response Parameter": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Annual Weighted-average Interbank Exchange Rate - THB / USD"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-07 17:27:48"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Rates of Exchange of Commercial Banks in Bangkok Metropolis (2002-present)"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "อัตราแลกเปลี่ยนเฉลี่ยของธนาคารพาณิชย์ในกรุงเทพมหานคร (2545-ปัจจุบัน)"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": "(Unit : Baht / 1 Unit of Foreign Currency)"
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": "(หน่วย : บาท ต่อ 1 หน่วยเงินตราต่างประเทศ)"
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "source_of_data_eng": {
+                              "type": "string",
+                              "example": "Bank of Thailand"
+                            },
+                            "source_of_data_th": {
+                              "type": "string",
+                              "example": "ธนาคารแห่งประเทศไทย"
+                            }
+                          }
+                        }
+                      },
+                      "report_remark": {
+                        "type": "array",
+                        "example": ""
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-06-13"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "period": {
+                          "type": "string",
+                          "example": "2002"
+                        },
+                        "rate": {
+                          "type": "string",
+                          "example": "43.0041000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "parameters": {
+      "start_period": {
+        "name": "start_period",
+        "in": "query",
+        "description": "Start Period Date (YYYY-QN) EX. 2017-Q1",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "end_period": {
+        "name": "end_period",
+        "in": "query",
+        "description": "End Preiod Date (YYYY-QN) EX. 2017-Q1",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

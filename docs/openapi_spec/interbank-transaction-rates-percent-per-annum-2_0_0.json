@@ -1,0 +1,224 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Interbank Transaction Rates (Percent per annum)",
+    "description": "Interbank transactions rates are classified by lending period (tenor) such as Overnight (O/N) , Tom/Next , Overnight Forward Start , At Call and Fixed Term. <br>\nLag time : 1 business day <br>\nRelease schedule : every business day at 10.00 a.m. <br> \nSource of data :\n1. All commercial banks\n2. Export-Import Bank of Thailand , The Government Savings Bank , Bank for Agricultue and Agricultural Cooperatives , Small and Medium Enterprise Development Bank of Thailand , The Government Housing Bank and Islamic Bank of Thailand <br>\n3. All finance companies <br>\nMore detail  [CLICK](https://app.bot.or.th/BTWS_STAT/statistics/DownloadFile.aspx?file=FM_RT_007_ENG.PDF)",
+    "version": "2.0.0",
+    "x-ibm-name": "interbank-transaction-rates-percent-per-annum"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/Stat-InterbankTransactionRate/v2/INTRBNK_TXN_RATE"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "term_type",
+            "in": "query",
+            "description": "term Type EX. O/N",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Interbank Transaction Rates (Percent per annum)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-24 16:37:42"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_header": {
+                    "type": "object",
+                    "properties": {
+                      "report_name_eng": {
+                        "type": "string",
+                        "example": "Interbank Transactions"
+                      },
+                      "report_name_th": {
+                        "type": "string",
+                        "example": "ธุรกรรมการกู้ยืมระหว่างธนาคาร"
+                      },
+                      "report_uoq_name_eng": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "report_uoq_name_th": {
+                        "type": "string",
+                        "example": ""
+                      },
+                      "report_source_of_data": {
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "example": ""
+                        }
+                      },
+                      "report_remark": {
+                        "type": "object",
+                        "properties": {
+                          "report_remark_eng": {
+                            "type": "string"
+                          },
+                          "report_remark_th": {
+                            "type": "string"
+                          }
+                        },
+                        "example": [
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "",
+                            "report_remark_th": ""
+                          },
+                          {
+                            "report_remark_eng": "Overnight Forward Start transaction data start on August,1 2016 onward",
+                            "report_remark_th": "ธุรกรรม Overnight Forward Start เริ่มรายงานข้อมูลตั้งแต่วันที่ 1 สิงหาคม 2559 เป็นต้นไป "
+                          }
+                        ]
+                      },
+                      "last_updated": {
+                        "type": "string",
+                        "example": "2017-07-24"
+                      }
+                    }
+                  },
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "term_type_name_th": {
+                        "type": "string"
+                      },
+                      "term_type_name_eng": {
+                        "type": "string"
+                      },
+                      "min_interest_rate": {
+                        "type": "string"
+                      },
+                      "max_interest_rate": {
+                        "type": "string"
+                      },
+                      "mode_interest_rate": {
+                        "type": "string"
+                      },
+                      "weighted_average_interest_rate": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2014-10-28",
+                        "term_type_name_th": "O/N",
+                        "term_type_name_eng": "O/N",
+                        "min_interest_rate": "1.90000",
+                        "max_interest_rate": "2.02000",
+                        "mode_interest_rate": "1.90000",
+                        "weighted_average_interest_rate": "1.94169"
+                      },
+                      {
+                        "period": "2014-10-27",
+                        "term_type_name_th": "O/N",
+                        "term_type_name_eng": "O/N",
+                        "min_interest_rate": "1.90000",
+                        "max_interest_rate": "2.00000",
+                        "mode_interest_rate": "1.90000",
+                        "weighted_average_interest_rate": "1.94973"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

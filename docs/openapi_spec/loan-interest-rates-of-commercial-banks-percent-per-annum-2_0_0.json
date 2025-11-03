@@ -1,0 +1,335 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Loan Interest Rates of Commercial Banks (Percent per annum)",
+    "description": "",
+    "version": "2.0.0",
+    "x-ibm-name": "loan-interest-rates-of-commercial-banks-percent-per-annum"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/LoanRate/v2"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/loan_rate/": {
+      "get": {
+        "description": "Loan Interest Rates of Commercial Banks (Percent per annum) <br> <br> Refers to the announced loan interest rate of commercial banks, classified by loan type such as MOR (Minimun Overdraft Rate), MLR (Minimun Loan Rate) and MRR (Minimun Retail Rate) etc <br> Frequency : Daily <br> Lag time : -- <br> Release schedule : Every business day at 2.00 p.m. <br> Source of data : Commercial Banks registered in Thailand and Foreign Bank Branches <br> More detail [CLICK](https://www.bot.or.th/th/statistics/interest-rate.html)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Loan%20Interest%20Rates%20of%20Commercial%20Banks%20(Percent%20per%20annum)%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avg_loan_rate/": {
+      "get": {
+        "description": "Average Loan Interest Rates of Commercial Banks (Percent per annum) <br> <br> Refers to the announced loan interest rate of commercial banks, classified by loan type such as MOR (Minimun Overdraft Rate), MLR (Minimun Loan Rate) and MRR (Minimun Retail Rate) etc <br> Frequency : Daily <br> Lag time : -- <br> Release schedule : Every business day at 2.00 p.m. <br> Source of data : Commercial Banks registered in Thailand and Foreign Bank Branches <br> More detail [CLICK](https://www.bot.or.th/th/statistics/interest-rate.html)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Average%20Loan%20Interest%20Rates%20of%20Commercial%20Banks%20(Percent%20per%20annum)%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Loan Interest Rates of Commercial Banks (Percent per annum) Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Loan Interest Rates of Commercial Banks (Percent per annum)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-24 16:43:48"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "bank_type_name_th": {
+                        "type": "string"
+                      },
+                      "bank_type_name_eng": {
+                        "type": "string"
+                      },
+                      "bank_name_th": {
+                        "type": "string"
+                      },
+                      "bank_name_eng": {
+                        "type": "string"
+                      },
+                      "mor": {
+                        "type": "string"
+                      },
+                      "mlr": {
+                        "type": "string"
+                      },
+                      "mrr": {
+                        "type": "string"
+                      },
+                      "ceiling_rate": {
+                        "type": "string"
+                      },
+                      "default_rate": {
+                        "type": "string"
+                      },
+                      "creditcard_min": {
+                        "type": "string"
+                      },
+                      "creditcard_max": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2016-04-04",
+                        "bank_type_name_th": "ธนาคารพาณิชย์จดทะเบียนในประเทศ",
+                        "bank_type_name_eng": "Commercial Banks registered in Thailand",
+                        "bank_name_th": "กรุงเทพ",
+                        "bank_name_eng": "Bangkok Bank",
+                        "mor": "7.3750",
+                        "mlr": "6.5000",
+                        "mrr": "7.8750",
+                        "ceiling_rate": "18.0000",
+                        "default_rate": "22.8750",
+                        "creditcard_min": "20.0000",
+                        "creditcard_max": "20.0000"
+                      },
+                      {
+                        "period": "2016-04-04",
+                        "bank_type_name_th": "ธนาคารพาณิชย์จดทะเบียนในประเทศ",
+                        "bank_type_name_eng": "Commercial Banks registered in Thailand",
+                        "bank_name_th": "กรุงไทย",
+                        "bank_name_eng": "Krung Thai Bank",
+                        "mor": "7.3750",
+                        "mlr": "6.5250",
+                        "mrr": "7.8750",
+                        "ceiling_rate": "17.8750",
+                        "default_rate": "19.8750",
+                        "creditcard_min": "",
+                        "creditcard_max": ""
+                      },
+                      {
+                        "period": "2016-04-04",
+                        "bank_type_name_th": "สาขาธนาคารต่างประเทศ",
+                        "bank_type_name_eng": "Foreign Bank Branches",
+                        "bank_name_th": "มิซูโฮ",
+                        "bank_name_eng": "Mizuho Bank",
+                        "mor": "9.8750",
+                        "mlr": "6.7500",
+                        "mrr": "7.7500",
+                        "ceiling_rate": "28.0000",
+                        "default_rate": "28.0000",
+                        "creditcard_min": "",
+                        "creditcard_max": ""
+                      },
+                      {
+                        "period": "2016-04-04",
+                        "bank_type_name_th": "สาขาธนาคารต่างประเทศ",
+                        "bank_type_name_eng": "Foreign Bank Branches",
+                        "bank_name_th": "บีเอ็นพี พารีบาส์",
+                        "bank_name_eng": "BNP Paribas",
+                        "mor": "8.0000",
+                        "mlr": "8.0000",
+                        "mrr": "",
+                        "ceiling_rate": "8.0000",
+                        "default_rate": "19.0000",
+                        "creditcard_min": "",
+                        "creditcard_max": ""
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Average Loan Interest Rates of Commercial Banks (Percent per annum) Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Average Loan Interest Rates of Commercial Banks (Percent per annum)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-24 16:46:27"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "name_th": {
+                        "type": "string"
+                      },
+                      "name_eng": {
+                        "type": "string"
+                      },
+                      "mor": {
+                        "type": "string"
+                      },
+                      "mlr": {
+                        "type": "string"
+                      },
+                      "mrr": {
+                        "type": "string"
+                      },
+                      "ceiling_rate": {
+                        "type": "string"
+                      },
+                      "default_rate": {
+                        "type": "string"
+                      },
+                      "creditcard_min": {
+                        "type": "string"
+                      },
+                      "creditcard_max": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2016-01-04",
+                        "name_th": "เฉลี่ยของธนาคารพาณิชย์จดทะเบียนในประเทศ",
+                        "name_eng": "Average of Commercial Banks registered in Thailand",
+                        "mor": "7.9166",
+                        "mlr": "7.0971",
+                        "mrr": "8.3883",
+                        "ceiling_rate": "23.0182",
+                        "default_rate": "24.7879",
+                        "creditcard_min": "19.4444",
+                        "creditcard_max": "19.4444"
+                      },
+                      {
+                        "period": "2016-01-04",
+                        "name_th": "เฉลี่ยของสาขาธนาคารต่างประเทศ",
+                        "name_eng": "Average of Foreign Bank Branches",
+                        "mor": "8.4375",
+                        "mlr": "7.7813",
+                        "mrr": "8.8125",
+                        "ceiling_rate": "17.7075",
+                        "default_rate": "24.1567",
+                        "creditcard_min": "20.0000",
+                        "creditcard_max": "20.0000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "parameters": {
+      "start_period": {
+        "name": "start_period",
+        "in": "query",
+        "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "end_period": {
+        "name": "end_period",
+        "in": "query",
+        "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}

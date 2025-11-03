@@ -1,0 +1,354 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum)",
+    "description": "",
+    "version": "2.0.0",
+    "x-ibm-name": "deposit-interest-rates-for-individuals-of-commercial-banks-percent-per-annum"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.api.bot.or.th/DepositRate/v2"
+    }
+  ],
+  "security": [
+    {
+      "clientIdHeader": []
+    }
+  ],
+  "paths": {
+    "/deposit_rate/": {
+      "get": {
+        "description": "Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum) <br> <br> Refers to the announced deposit interest rate for individual of commercial banks, classified by deposit type such as saving and fixed term deposit <br> Frequency : Daily <br> Lag time : -- <br> Release schedule : Every business day at 2.00 p.m. <br> Source of data : Commercial Banks registered in Thailand and Foreign Bank Branches <br> More detail [CLICK](https://www.bot.or.th/english/statistics/financialmarkets/interestrate/_layouts/application/interest_rate/in_rate.aspx)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deposit%20Interest%20Rates%20for%20Individuals%20of%20Commercial%20Banks%20(Percent%20per%20annum)%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/avg_deposit_rate/": {
+      "get": {
+        "description": "Min-Max Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum) <br> <br> Refers to the announced deposit interest rate for individual of commercial banks, classified by deposit type such as saving and fixed term deposit <br> Frequency : Daily <br> Lag time : -- <br> Release schedule : Every business day at 2.00 p.m. <br> Source of data : Commercial Banks registered in Thailand and Foreign Bank Branches <br> More detail [CLICK](https://www.bot.or.th/english/statistics/financialmarkets/interestrate/_layouts/application/interest_rate/in_rate.aspx)",
+        "parameters": [
+          {
+            "name": "start_period",
+            "in": "query",
+            "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_period",
+            "in": "query",
+            "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Min-Max%20Deposit%20Interest%20Rates%20for%20Individuals%20of%20Commercial%20Banks%20(Percent%20per%20annum)%20Response%20Parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum) Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-12 11:05:13"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "bank_type_name_th": {
+                        "type": "string"
+                      },
+                      "bank_type_name_eng": {
+                        "type": "string"
+                      },
+                      "bank_name_th": {
+                        "type": "string"
+                      },
+                      "bank_name_eng": {
+                        "type": "string"
+                      },
+                      "saving_min": {
+                        "type": "string"
+                      },
+                      "saving_max": {
+                        "type": "string"
+                      },
+                      "fix_3_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_3_mths_max": {
+                        "type": "string"
+                      },
+                      "fix_6_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_6_mths_max": {
+                        "type": "string"
+                      },
+                      "fix_12_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_12_mths_max": {
+                        "type": "string"
+                      },
+                      "fix_24_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_24_mths_max": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2015-02-13",
+                        "bank_type_name_th": "ธนาคารพาณิชย์จดทะเบียนในประเทศ",
+                        "bank_type_name_eng": "Commercial Banks registered in Thailand",
+                        "bank_name_th": "ไทยพาณิชย์",
+                        "bank_name_eng": "The Siam Commercial Bank",
+                        "saving_min": "0.5000",
+                        "saving_max": "0.5000",
+                        "fix_3_mths_min": "1.1000",
+                        "fix_3_mths_max": "1.9000",
+                        "fix_6_mths_min": "1.3500",
+                        "fix_6_mths_max": "1.4000",
+                        "fix_12_mths_min": "1.7000",
+                        "fix_12_mths_max": "1.7000",
+                        "fix_24_mths_min": "1.9000",
+                        "fix_24_mths_max": "1.9000"
+                      },
+                      {
+                        "period": "2015-02-13",
+                        "bank_type_name_th": "ธนาคารพาณิชย์จดทะเบียนในประเทศ",
+                        "bank_type_name_eng": "Commercial Banks registered in Thailand",
+                        "bank_name_th": "กรุงศรีอยุธยา",
+                        "bank_name_eng": "Bank of Ayudhya",
+                        "saving_min": "0.4000",
+                        "saving_max": "0.4000",
+                        "fix_3_mths_min": "1.1000",
+                        "fix_3_mths_max": "1.2500",
+                        "fix_6_mths_min": "1.3500",
+                        "fix_6_mths_max": "1.5000",
+                        "fix_12_mths_min": "1.7500",
+                        "fix_12_mths_max": "1.7500",
+                        "fix_24_mths_min": "1.9000",
+                        "fix_24_mths_max": "1.9000"
+                      },
+                      {
+                        "period": "2015-02-13",
+                        "bank_type_name_th": "สาขาธนาคารต่างประเทศ",
+                        "bank_type_name_eng": "Foreign Bank Branches",
+                        "bank_name_th": "ซิตี้แบงก์",
+                        "bank_name_eng": "Citibank",
+                        "saving_min": "0.5000",
+                        "saving_max": "0.5000",
+                        "fix_3_mths_min": "1.1000",
+                        "fix_3_mths_max": "1.1000",
+                        "fix_6_mths_min": "1.2000",
+                        "fix_6_mths_max": "1.2000",
+                        "fix_12_mths_min": "1.3000",
+                        "fix_12_mths_max": "1.3000",
+                        "fix_24_mths_min": "1.4000",
+                        "fix_24_mths_max": "1.4000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "Min-Max Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum) Response Parameters": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "properties": {
+              "api": {
+                "type": "string",
+                "example": "Min-Max Deposit Interest Rates for Individuals of Commercial Banks (Percent per annum)"
+              },
+              "timestamp": {
+                "type": "string",
+                "example": "2017-07-24 16:41:36"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "data_detail": {
+                    "type": "object",
+                    "properties": {
+                      "period": {
+                        "type": "string"
+                      },
+                      "name_th": {
+                        "type": "string"
+                      },
+                      "name_eng": {
+                        "type": "string"
+                      },
+                      "saving_min": {
+                        "type": "string"
+                      },
+                      "saving_max": {
+                        "type": "string"
+                      },
+                      "fix_3_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_3_mths_max": {
+                        "type": "string"
+                      },
+                      "fix_6_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_6_mths_max": {
+                        "type": "string"
+                      },
+                      "fix_12_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_12_mths_max": {
+                        "type": "string"
+                      },
+                      "fix_24_mths_min": {
+                        "type": "string"
+                      },
+                      "fix_24_mths_max": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "period": "2016-04-04",
+                        "name_th": "ต่ำสุด - สูงสุดของ ธนาคารพาณิชย์จดทะเบียนในประเทศ",
+                        "name_eng": "Min-Max of Commercial Banks registered in Thailand",
+                        "saving_min": "0.0500",
+                        "saving_max": "2.5000",
+                        "fix_3_mths_min": "0.2500",
+                        "fix_3_mths_max": "1.7500",
+                        "fix_6_mths_min": "0.2500",
+                        "fix_6_mths_max": "1.8000",
+                        "fix_12_mths_min": "0.2500",
+                        "fix_12_mths_max": "1.9000",
+                        "fix_24_mths_min": "1.1000",
+                        "fix_24_mths_max": "2.0000"
+                      },
+                      {
+                        "period": "2016-04-04",
+                        "name_th": "ต่ำสุด - สูงสุดของ สาขาธนาคารต่างประเทศ",
+                        "name_eng": "Min-Max of Foreign Bank Branches",
+                        "saving_min": "0.0000",
+                        "saving_max": "1.1000",
+                        "fix_3_mths_min": "0.0000",
+                        "fix_3_mths_max": "1.8000",
+                        "fix_6_mths_min": "0.0000",
+                        "fix_6_mths_max": "1.9000",
+                        "fix_12_mths_min": "0.0000",
+                        "fix_12_mths_max": "2.0000",
+                        "fix_24_mths_min": "0.9500",
+                        "fix_24_mths_max": "2.0000"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      }
+    },
+    "parameters": {
+      "start_period": {
+        "name": "start_period",
+        "in": "query",
+        "description": "Start Period Date (YYYY-MM-DD) EX. 2017-06-30",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "end_period": {
+        "name": "end_period",
+        "in": "query",
+        "description": "End Preiod Date (YYYY-MM-DD) EX. 2017-06-30",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "clientIdHeader": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}
