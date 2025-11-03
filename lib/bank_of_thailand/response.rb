@@ -166,7 +166,7 @@ module BankOfThailand
       vals.each_cons(2).map do |prev, curr|
         {
           absolute: curr - prev,
-          percentage: ((curr - prev) / prev * 100).round(4)
+          percentage: prev.zero? ? 0.0 : ((curr - prev) / prev * 100).round(4)
         }
       end
     end
