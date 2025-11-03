@@ -115,7 +115,8 @@ RSpec.describe BankOfThailand::Client do
 
       result = client.get("/test/path")
 
-      expect(result).to eq({ "data" => "test" })
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq({ "data" => "test" })
       expect(stub).to have_been_requested
     end
 
@@ -130,7 +131,8 @@ RSpec.describe BankOfThailand::Client do
 
       result = client.get("https://custom.api.example.com/endpoint")
 
-      expect(result).to eq({ "data" => "test" })
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq({ "data" => "test" })
       expect(stub).to have_been_requested
     end
 
@@ -220,7 +222,8 @@ RSpec.describe BankOfThailand::Client do
 
       result = client.post("/test/path", body: { key: "value" })
 
-      expect(result).to eq({ "result" => "success" })
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq({ "result" => "success" })
       expect(stub).to have_been_requested
     end
   end

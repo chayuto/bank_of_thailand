@@ -6,6 +6,6 @@ RSpec.describe BankOfThailand do
   end
 
   it "has the correct version" do
-    expect(BankOfThailand::VERSION).to eq("0.1.0")
+    expect(BankOfThailand::VERSION).to eq("0.2.0")
   end
 end

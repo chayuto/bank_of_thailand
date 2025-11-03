@@ -9,9 +9,10 @@ A Ruby gem for accessing the Bank of Thailand's public API services. This gem pr
 
 - **Token-based Authentication** - Secure API access using BOT's authorization system
 - **11 API Resources** - Complete coverage of all documented BOT API products
+- **Smart Response Objects** - Built-in statistics, CSV export, and data analysis
 - **Type Safety** - Comprehensive error handling with custom exception classes
 - **Flexible Configuration** - Global or instance-level configuration options
-- **Full Test Coverage** - 66 examples with 100% pass rate
+- **Full Test Coverage** - 117 examples with 100% pass rate
 - **YARD Documentation** - Complete API documentation for all endpoints
 
 ## Installation
@@ -77,15 +78,7 @@ client = BankOfThailand::Client.new do |config|
 end
 ```
 
-### Configuration Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `api_token` | String | `nil` | **Required.** Your BOT API token from the portal |
-| `base_url` | String | `https://gateway.api.bot.or.th` | Base gateway URL (rarely needs changing) |
-| `timeout` | Integer | `30` | Request timeout in seconds |
-| `max_retries` | Integer | `3` | Number of retry attempts for failed requests |
-| `logger` | Logger | `nil` | Optional logger for debugging |
+**Available Options:** `api_token` (required), `base_url`, `timeout`, `max_retries`, `logger`
 
 ## Usage
 
@@ -114,6 +107,42 @@ client.swap_point             # Swap Point Onshore
 client.license_check          # BOT License Check
 client.financial_holidays     # Financial Institutions' Holidays
 client.search_series          # Search Stat APIs
+```
+
+### Working with Responses
+
+All API calls return a `Response` object with built-in data analysis features:
+
+```ruby
+rates = client.exchange_rate.daily(
+  start_period: "2025-01-01",
+  end_period: "2025-01-31"
+)
+
+# Access data
+rates.data                     # Array of data points
+rates.count                    # Number of records
+rates.first                    # First record
+rates.last                     # Last record
+
+# Quick statistics
+rates.average("value")         # Average rate
+rates.min("value")             # Minimum rate
+rates.max("value")             # Maximum rate
+
+# Analyze changes
+rates.change("value")          # Overall change with percentage
+rates.volatility("value")      # Daily volatility
+rates.trend("value")           # :up, :down, or :flat
+
+# Export to CSV
+rates.to_csv("rates.csv")      # Save to file
+csv_string = rates.to_csv      # Get CSV string
+
+# Check completeness
+rates.date_range               # ["2025-01-01", "2025-01-31"]
+rates.complete?                # All dates present?
+rates.missing_dates            # Array of missing dates
 ```
 
 ### Exchange Rates
@@ -179,12 +208,6 @@ implied = client.implied_rate.rates(
 
 ```ruby
 # Debt securities auction results
-```
-
-### Securities & Markets
-
-```ruby
-# Debt securities auction results
 results = client.debt_securities.auction_results(
   start_period: "2025-01-01",
   end_period: "2025-01-31"
@@ -223,32 +246,22 @@ series = client.search_series.search(keyword: "government debt")
 
 ## Error Handling
 
+The gem provides specific exception classes for different error scenarios:
+
 ```ruby
 begin
-  client.exchange_rate.daily
+  rates = client.exchange_rate.daily(start_period: "2025-01-01", end_period: "2025-01-31")
+rescue BankOfThailand::AuthenticationError
+  puts "Invalid API token"
 rescue BankOfThailand::RateLimitError => e
-  retry_after = e.retry_after
-rescue BankOfThailand::APIError => e
-  puts "API error: #{e.message}"
+  sleep e.retry_after
+  retry
+rescue BankOfThailand::RequestError => e
+  puts "Request failed: #{e.message}"
 end
 ```
 
-### Exception Hierarchy
-
-```
-BankOfThailand::Error (StandardError)
-├── ConfigurationError
-└── RequestError
-    ├── AuthenticationError
-    │   └── InvalidTokenError
-    ├── NotFoundError
-    ├── RateLimitError
-    └── ServerError
-```
-
-## Rate Limits
-
-Rate limits vary by API product. The gem automatically handles rate limiting errors and provides retry information via `RateLimitError#retry_after`.
+**Exception Types:** `ConfigurationError`, `AuthenticationError`, `NotFoundError`, `RateLimitError`, `ServerError`
 
 ## Development
 

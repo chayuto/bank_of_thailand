@@ -3,6 +3,7 @@
 require_relative "bank_of_thailand/version"
 require_relative "bank_of_thailand/errors"
 require_relative "bank_of_thailand/configuration"
+require_relative "bank_of_thailand/response"
 require_relative "bank_of_thailand/client"
 require_relative "bank_of_thailand/resource"
 require_relative "bank_of_thailand/resources/exchange_rate"
