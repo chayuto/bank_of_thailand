@@ -39,7 +39,8 @@ RSpec.describe BankOfThailand::Resources::LicenseCheck do
 
       result = resource.search_authorized(keyword: "finance")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
 
@@ -57,7 +58,8 @@ RSpec.describe BankOfThailand::Resources::LicenseCheck do
 
       result = resource.search_authorized(keyword: "finance", page: 1, limit: 10)
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end
@@ -87,7 +89,8 @@ RSpec.describe BankOfThailand::Resources::LicenseCheck do
 
       result = resource.license(auth_id: "12345", doc_id: "DOC-001")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end
@@ -117,7 +120,8 @@ RSpec.describe BankOfThailand::Resources::LicenseCheck do
 
       result = resource.authorized_detail(id: 12_345)
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end

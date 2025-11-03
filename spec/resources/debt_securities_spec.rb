@@ -53,7 +53,8 @@ RSpec.describe BankOfThailand::Resources::DebtSecurities do
 
       result = resource.auction_results(start_period: "2025-01-01", end_period: "2025-01-31")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end

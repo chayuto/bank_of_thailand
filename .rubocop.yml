@@ -20,8 +20,13 @@ Metrics/BlockLength:
     - "spec/**/*"
     - "*.gemspec"
 
+Metrics/ClassLength:
+  Max: 155
+
 Metrics/MethodLength:
   Max: 20
+  Exclude:
+    - "lib/bank_of_thailand/client.rb"
 
 Metrics/AbcSize:
   Max: 32
@@ -43,6 +48,9 @@ RSpec/MultipleExpectations:
 
 RSpec/NestedGroups:
   Max: 5
+
+RSpec/NamedSubject:
+  Enabled: false
 
 RSpec/VerifiedDoubles:
   Enabled: false

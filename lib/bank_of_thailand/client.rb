@@ -149,12 +149,13 @@ module BankOfThailand
 
     # Handle HTTP response
     # @param response [Faraday::Response] HTTP response
-    # @return [Hash] Parsed response body
+    # @return [Response] Wrapped response object
     # @raise [RequestError] if response indicates an error
     def handle_response(response)
       case response.status
       when 200..299
-        parse_json(response.body)
+        json = parse_json(response.body)
+        Response.new(json)
       when 401
         raise AuthenticationError.new("Authentication failed. Check your API token.", response)
       when 403
@@ -176,11 +177,13 @@ module BankOfThailand
 
     # Parse JSON response
     # @param body [String] Response body
-    # @return [Hash] Parsed JSON
+    # @return [Hash, Array] Parsed JSON
     def parse_json(body)
       return {} if body.nil? || body.empty?
 
-      JSON.parse(body)
+      result = JSON.parse(body)
+      # Ensure we return a Hash or Array, not a primitive
+      result.is_a?(Hash) || result.is_a?(Array) ? result : {}
     rescue JSON::ParserError => e
       raise RequestError, "Invalid JSON response: #{e.message}"
     end

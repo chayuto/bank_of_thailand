@@ -23,8 +23,9 @@ RSpec.describe BankOfThailand::FinancialHolidays do
         )
 
       response = resource.list(year: "2024")
-      expect(response).to be_an(Array)
-      expect(response.first["HolidayDescription"]).to eq("New Year's Day")
+      expect(response).to be_a(BankOfThailand::Response)
+      expect(response.data).to be_an(Array)
+      expect(response.data.first["HolidayDescription"]).to eq("New Year's Day")
     end
   end
 end

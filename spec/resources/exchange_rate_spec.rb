@@ -52,7 +52,8 @@ RSpec.describe BankOfThailand::Resources::ExchangeRate do
 
       result = resource.daily(start_period: "2025-01-01", end_period: "2025-01-31")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end
@@ -89,7 +90,8 @@ RSpec.describe BankOfThailand::Resources::ExchangeRate do
 
       result = resource.monthly(start_period: "2025-01", end_period: "2025-03")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end
@@ -125,7 +127,8 @@ RSpec.describe BankOfThailand::Resources::ExchangeRate do
 
       result = resource.quarterly(start_period: "2025-Q1", end_period: "2025-Q2")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end
@@ -161,7 +164,8 @@ RSpec.describe BankOfThailand::Resources::ExchangeRate do
 
       result = resource.annual(start_period: "2020", end_period: "2024")
 
-      expect(result).to eq(response_data)
+      expect(result).to be_a(BankOfThailand::Response)
+      expect(result.raw).to eq(response_data)
       expect(stub).to have_been_requested
     end
   end
