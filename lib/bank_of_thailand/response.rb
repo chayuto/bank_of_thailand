@@ -131,7 +131,7 @@ module BankOfThailand
 
       start_date = Date.parse(date_range[0])
       end_date = Date.parse(date_range[1])
-      actual_dates = data.map { |row| Date.parse(row["period"] || row["date"]) }
+      actual_dates = data.select { |row| row.is_a?(Hash) }.map { |row| Date.parse(row["period"] || row["date"]) }
 
       (start_date..end_date).reject { |date| actual_dates.include?(date) }
     rescue Date::Error
