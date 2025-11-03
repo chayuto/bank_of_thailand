@@ -98,7 +98,7 @@ module BankOfThailand
     # Date range covered by the data
     # @return [Array<String>, nil] [start_date, end_date] or nil if no dates
     def date_range
-      dates = data.map { |row| row["period"] || row["date"] }.compact
+      dates = data.select { |row| row.is_a?(Hash) }.map { |row| row["period"] || row["date"] }.compact
       return nil if dates.empty?
 
       dates.minmax
